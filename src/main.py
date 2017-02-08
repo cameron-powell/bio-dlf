@@ -1,12 +1,14 @@
 from flask import Flask
-
+from flask import render_template
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 
 
 @app.route('/')
 def index():
-    return '<h1>Hello, world!</h1>'
+    return render_template('base.html')
 
 
 @app.errorhandler(404)
