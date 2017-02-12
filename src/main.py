@@ -51,7 +51,7 @@ class FeedbackForm(FlaskForm):
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    return render_template('index.html')
 
 
 @app.route('/feedback', methods=['GET', 'POST'])
