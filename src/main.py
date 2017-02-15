@@ -42,6 +42,10 @@ def send_email(to, subject, template, **kwargs):
     mail.send(msg)
 
 
+class IndexForm(FlaskForm):
+    feedback_redirect = SubmitField('Anonymous Feedback')
+
+
 class FeedbackForm(FlaskForm):
     section = SelectField('Lab Section',
                           choices=[('P01', 'P01 Monday 1:05pm-3:55pm'), ('Q05', 'Q05 Wednesday 1:05pm-3:55pm')])
@@ -49,9 +53,12 @@ class FeedbackForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    form = IndexForm()
+    if form.validate_on_submit():
+        return redirect(url_for('feedback'))
+    return render_template('index.html', form=form)
 
 
 @app.route('/feedback', methods=['GET', 'POST'])

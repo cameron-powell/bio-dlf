@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}Deborah Ferguson{% endblock %}
 
@@ -28,7 +29,13 @@
     <br>
 
     <h3>Teaching</h3>
-    <p></p>
+    <p><strong>Current:</strong><br>
+        GTA for Physics 2212 Sections P01 and Q05<br>
+        Help Center on Tuesdays 1pm-2pm<br>
+        {{ wtf.quick_form(form) }}<br>
+        <strong>Previous:</strong><br>
+        (Fall '16) GTA for Physics 2211 Sections M04 and N01<br>
+    </p>
     <br>
 
     <h3>Awards</h3>
