@@ -7,7 +7,7 @@ from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_mail import Message
 from flask_script import Manager
-from flask_sslify import SSLify
+#from flask_sslify import SSLify
 from flask_wtf import FlaskForm
 import os
 from wtforms import SelectField
@@ -34,7 +34,7 @@ manager = Manager(app)
 # Bootstrap setup
 bootstrap = Bootstrap(app)
 # Https
-sslify = SSLify(app)
+#sslify = SSLify(app)
 
 
 def send_email(to, subject, template, **kwargs):
