@@ -6,6 +6,8 @@ from flask import url_for
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_mail import Message
+from flask_script import Manager
+from flask_sslify import SSLify
 from flask_wtf import FlaskForm
 import os
 from wtforms import SelectField
@@ -27,8 +29,12 @@ app.config['MAIL_SUBJECT_PREFIX'] = 'Someone has submitted feedback!'
 app.config['MAIL_SENDER'] = os.environ.get('BIO_DLF_MAIL_USERNAME')
 app.config['MAIL_RECEIVER'] = os.environ.get('BIO_DLF_MAIL_RECEIVER')
 mail = Mail(app)
+# Manager setup
+manager = Manager(app)
 # Bootstrap setup
 bootstrap = Bootstrap(app)
+# Https
+sslify = SSLify(app)
 
 
 def send_email(to, subject, template, **kwargs):
@@ -88,4 +94,5 @@ def internal_server_error(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    manager.run()
