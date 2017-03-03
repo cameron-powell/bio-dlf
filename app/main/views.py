@@ -1,4 +1,4 @@
-from flask import flash, redirect, render_template, url_for
+from flask import current_app, flash, redirect, render_template, url_for
 from . import main
 from .forms import FeedbackForm, IndexForm
 from ..email import send_email
@@ -22,7 +22,8 @@ def feedback():
         section_data = form.section.data
         feedback_data = form.feedback.data
         # Send an email containing the feedback.
-        send_email(app.config['MAIL_RECEIVER'], ' ' + section_data, 'mail/new_feedback', feedback_data=feedback_data)
+        send_email(current_app.config['MAIL_RECEIVER'], 'Someone has submitted feedback! ' + section_data,
+                   'mail/new_feedback', feedback_data=feedback_data)
         # Tell the user that their feedback was submitted.
         flash('Thank you for your feedback!')
         # Go back to the home page.
