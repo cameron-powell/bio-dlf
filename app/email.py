@@ -12,4 +12,4 @@ def send_email(to, subject, template, **kwargs):
     msg.html = render_template(template + '.html', **kwargs)
     # Send the email.
     with app.app_context():
-        mail.send_message(msg)
+        mail.send(msg)
