@@ -8,7 +8,7 @@ class IndexForm(FlaskForm):
 
 
 class FeedbackForm(FlaskForm):
-    section = SelectField('Lab Section',
-                          choices=[('P01', 'P01 Monday 1:05pm-3:55pm'), ('Q05', 'Q05 Wednesday 1:05pm-3:55pm')])
+    section = SelectField('Lab Section', choices=[('P2211SOUP', 'Physics 2211 SOUP')])
+    # choices=[('P01', 'P01 Monday 1:05pm-3:55pm'), ('Q05', 'Q05 Wednesday 1:05pm-3:55pm')])
     feedback = TextAreaField('Feedback', validators=[DataRequired()])
     submit = SubmitField('Submit')
