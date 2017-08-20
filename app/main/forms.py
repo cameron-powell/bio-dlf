@@ -8,7 +8,8 @@ class IndexForm(FlaskForm):
 
 
 class FeedbackForm(FlaskForm):
-    section = SelectField('Lab Section', choices=[('P2211SOUP', 'Physics 2211 SOUP')])
+    # The first element of the tuple in 'choices' will be appended to the subject of the email sent
+    section = SelectField('Lab Section', choices=[('P2232HPII', 'Physics 2232 - Honors Physics II')])
     # choices=[('P01', 'P01 Monday 1:05pm-3:55pm'), ('Q05', 'Q05 Wednesday 1:05pm-3:55pm')])
     feedback = TextAreaField('Feedback', validators=[DataRequired()])
     submit = SubmitField('Submit')
