@@ -1,11 +1,9 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-from flask_mail import Mail
 from config import config
 
 
 bootstrap = Bootstrap()
-mail = Mail()
 
 
 def create_app(config_name):
@@ -14,7 +12,6 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     bootstrap.init_app(app)
-    mail.init_app(app)
 
     # Attach routes and custom error pages here.
     from .main import main as main_blueprint

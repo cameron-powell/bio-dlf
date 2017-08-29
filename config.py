@@ -5,13 +5,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    MAIL_PASSWORD = os.environ.get('BIO_DLF_MAIL_PASSWORD')
-    MAIL_PORT = 587
-    MAIL_RECEIVER = os.environ.get('BIO_DLF_MAIL_RECEIVER')
-    MAIL_SENDER = os.environ.get('BIO_DLF_MAIL_USERNAME')
-    MAIL_SERVER = 'smtp.googlemail.com'
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('BIO_DLF_MAIL_USERNAME')
+    EMAIL_URL = os.environ.get('BIO_DLF_EMAIL_URL')
+    EMAIL_KEY = os.environ.get('BIO_DLF_EMAIL_KEY')
+    EMAIL_FROM = os.environ.get('BIO_DLF_EMAIL_FROM')
+    EMAIL_TO = os.environ.get('BIO_DLF_EMAIL_TO')
     SECRET_KEY = os.environ.get('BIO_DLF_SECRET_KEY')
 
     @staticmethod

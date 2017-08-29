@@ -1,7 +1,7 @@
 from flask import current_app, flash, redirect, render_template, url_for
+from requests import post
 from . import main
 from .forms import FeedbackForm, IndexForm
-from ..email import send_email
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -22,10 +22,20 @@ def feedback():
         section_data = form.section.data
         feedback_data = form.feedback.data
         # Send an email containing the feedback.
-        send_email(current_app.config['MAIL_RECEIVER'], 'Someone has submitted feedback! ' + section_data,
-                   'mail/new_feedback', feedback_data=feedback_data)
-        # Tell the user that their feedback was submitted.
-        flash('Thank you for your feedback!')
+        url = current_app.config['EMAIL_URL']
+        auth = ('api', current_app.config['EMAIL_KEY'])
+        data = {
+            "from": "Anonymous Feedback <"+current_app.config['EMAIL_FROM']+">",
+            "to": [current_app.config['EMAIL_TO']],
+            "subject": "Someone has submitted feedback! %s" % section_data,
+            "text": "" + feedback_data
+        }
+        response = post(url, data=data, auth=auth)
+        # Notify the user of success or failure
+        if response.status_code != 200:
+            flash('There was an error sending your feedback.  Please try again later...')
+        else:
+            flash('Thank you for your feedback!')
         # Go back to the home page.
         return redirect(url_for('.index'))
     return render_template('feedback.html', form=form)
