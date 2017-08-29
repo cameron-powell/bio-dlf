@@ -15,6 +15,8 @@ def index():
 
 @main.route('/feedback', methods=['GET', 'POST'])
 def feedback():
+    '''Renders the feedback page OR sends the email and redirects
+    if it recieves input from the form on the feedback page.'''
     form = FeedbackForm()
     # If the user hit the submit button email their feedback.
     if form.validate_on_submit():
